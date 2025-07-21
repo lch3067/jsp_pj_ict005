@@ -3,7 +3,7 @@ package pj.mvc.jsp.dao;
 import pj.mvc.jsp.dto.CustomerDTO;
 
 // 설계부
-public interface CustomerDao {
+public interface CustomerDAO {
 
 	// ID 중복확인 처리
 	public int useridCheck(String strId);

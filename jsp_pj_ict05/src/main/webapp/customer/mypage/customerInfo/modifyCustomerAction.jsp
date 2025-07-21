@@ -32,24 +32,25 @@
 	%>
 	<div class="wrap">
 		<!-- Header 시작 -->
-		<%@ include file="../../common/header.jsp"%>
+		<%@ include file="../../../common/header.jsp"%>
 		<!-- Header 끝 -->
 
 		<!-- 컨텐츠 시작 -->
 		<%
-		int insertCnt = (Integer) request.getAttribute("insertCnt");
-		if (insertCnt == 1) {
+		int updateCnt = (Integer) request.getAttribute("updateCnt");
+		System.out.print(updateCnt);
+		if (updateCnt == 1) {
 		%>
 		<script type="text/javascript">
-			alert("회원가입 성공");
-			window.location = "/jsp_pj_ict05/login.do";
+			alert("회원수정 성공");
+			window.location = "/jsp_pj_ict05/main.do";
 		</script>
 		<%
 		} else {
 		%>
 		<script type="text/javascript">
-			alert("회원가입 실패");
-			window.location = "/jsp_pj_ict05/join.do";
+			alert("회원수정 실패");
+			window.location = "/jsp_pj_ict05/modifyDetailAction.do";
 		</script>
 		<%
 		}
@@ -57,7 +58,7 @@
 		<!-- 컨텐츠 끝 -->
 
 		<!-- Footer 시작 -->
-		<%@ include file="../../common/footer.jsp"%>
+		<%@ include file="../../../common/footer.jsp"%>
 		<!-- Footer 시작 -->
 	</div>
 </body>

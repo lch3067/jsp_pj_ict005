@@ -23,41 +23,58 @@
 	crossorigin="anonymous"></script>
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
-<script type="text/javascript" src="/jsp_pj_ict05/resources/js/common/main.js" defer></script>
+<script type="text/javascript"
+	src="/jsp_pj_ict05/resources/js/common/main.js" defer></script>
 <script src="/jsp_pj_ict05/resources/js/customer/join.js" defer></script>
 </head>
 <body>
 	<%
 		System.out.println("<<< 회원가입 처리 화면 >>>");
+		int deleteCnt = 0;
+		int selectCnt = 0;
 	%>
 	<div class="wrap">
 		<!-- Header 시작 -->
-		<%@ include file="../../common/header.jsp"%>
+		<%@ include file="../../../common/header.jsp"%>
 		<!-- Header 끝 -->
 
 		<!-- 컨텐츠 시작 -->
 		<%
-		int insertCnt = (Integer) request.getAttribute("insertCnt");
-		if (insertCnt == 1) {
+		try {
+			deleteCnt = (Integer) request.getAttribute("deleteCnt");
+			selectCnt = (Integer) request.getAttribute("selectCnt");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		if (deleteCnt == 1) {
 		%>
-		<script type="text/javascript">
-			alert("회원가입 성공");
-			window.location = "/jsp_pj_ict05/login.do";
-		</script>
+			<script type="text/javascript">
+				alert("회원탈퇴 성공");
+				window.location = "/jsp_pj_ict05/main.do";
+			</script>
 		<%
 		} else {
+			if(selectCnt == 0) {
 		%>
-		<script type="text/javascript">
-			alert("회원가입 실패");
-			window.location = "/jsp_pj_ict05/join.do";
-		</script>
+				<script type="text/javascript">
+					alert("회원인증 실패");
+					window.location = "/jsp_pj_ict05/deleteCustomer.do";
+				</script>
+		<%	
+			} else if(deleteCnt == 0){ 	
+		%>
+				<script type="text/javascript">
+					alert("회원탈퇴 실패");
+					window.location = "/jsp_pj_ict05/deleteCustomer.do";
+				</script>
 		<%
+			} 
 		}
 		%>
 		<!-- 컨텐츠 끝 -->
 
 		<!-- Footer 시작 -->
-		<%@ include file="../../common/footer.jsp"%>
+		<%@ include file="../../../common/footer.jsp"%>
 		<!-- Footer 시작 -->
 	</div>
 </body>

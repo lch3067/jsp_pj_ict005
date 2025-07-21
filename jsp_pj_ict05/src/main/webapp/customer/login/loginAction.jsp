@@ -27,7 +27,7 @@
 </head>
 <body>
 	<%
-		System.out.println("<<< 로그인 화면 >>>");
+		System.out.println("<<< 로그인 처리 화면 >>>");
 	%>
 	<div class="wrap">
 		<!-- Header 시작 -->
@@ -39,45 +39,84 @@
 			<div id="contents">
 				<!-- 상단 중앙1 시작 -->
 				<div id="section1">
-					<h1 align="center"> 로그인 </h2>
+					<h1 align="center">
+						로그인
+						</h2>
 				</div>
-				
+
+
+
 				<!-- 상단 중앙2 시작 -->
 				<div id=section2">
 					<div id="s2_inner">
 						<!-- join 시작 -->
 						<div class="join">
-							<form name="loginform" action="loginAction.do" method="post">
-								
-								<!-- 2-1. 중복확인 버튼 안 눌렀을때 0으로 설정 -->
-								<input type="hidden" name="hiddenUserid" value="0">
+							<form name="loginform" action="loginAction.do" method="post"
+								onsubmit="return loginCheck()">
+
+								<%
+								String sessionID = (String) request.getSession().getAttribute("sessionID");
+								if (sessionID == null) {
+								%>
+								<script type="text/javascript">
+									alert("아이디와 비밀번호가 일치하지 않습니다.");
+								</script>
 								<table>
 									<tr>
 										<th><label for="user_id" />* 아이디</th>
 										<td><input type="text" id="user_id" name="user_id"
 											class="input" size="20" placeholder="공백없이 20자 이내로 작성"
-											required autofocus>
-										</td>
+											required autofocus></td>
 									</tr>
-									
+
 									<tr>
 										<th><label for="user_password" />* 비밀번호</th>
 										<td><input type="password" id="user_password"
 											name="user_password" class="input" size="20"
 											placeholder="공백없이 20자 이내로 작성" required autofocus></td>
 									</tr>
-									
+
 									<tr>
-										<td colspan="2" style="border-botton: none">
-										<br>
-										<div align="right">
-											<input class="inputButton" type="submit" value="로그인">
-											<input class="inputButton" type="reset" value="취소"> 
-											<input class="inputButton" type="button" value="회원가입" onclick="window.location='join.do'"> 
-										</div>
+										<td colspan="2" style="border-botton: none"><br>
+											<div align="right">
+												<input class="inputButton" type="submit" value="로그인">
+												<input class="inputButton" type="reset" value="취소">
+												<input class="inputButton" type="button" value="회원가입"
+													onclick="window.location='join.do'">
+											</div>
+									</tr>
+								</table>
+								<%
+								} else {
+								/*  세션이 있는 경우 */
+								%>
+
+								<table>
+
+									<tr>
+										<th colspan="2">
+											<span style="color: #FF82AA">
+												<b>
+													<%=sessionID%>
+												</b>
+											</span> 님 환경합니다.
+										</th>
+									</tr>
+
+									<tr>
+										<td colspan="2" style="border-botton: none"><br>
+											<div align="right">
+												<input class="inputButton" type="button" value="회원수정" onclick="window.location='/jsp_pj_ict05/modifyCustomer.do'">
+												<input class="inputButton" type="button" value="회원탈퇴" onclick="window.location='/jsp_pj_ict05/deleteCustomer.do'">
+												<input class="inputButton" type="button" value="로그아웃" onclick="window.location='/jsp_pj_ict05/logout.do'">
+											</div>
 									</tr>
 								</table>
 
+
+								<%
+								}
+								%>
 							</form>
 						</div>
 						<!-- join 끝 -->

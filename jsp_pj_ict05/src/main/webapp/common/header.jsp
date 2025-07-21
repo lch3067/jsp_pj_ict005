@@ -28,7 +28,7 @@
 		 -->
 		<ul class="navbar_menu">
 			<li><a href="/jsp_pj_ict05/main.do">HOME</a></li>
-			<li><a href="#">제품소개</a></li>
+			<li><a href="/jsp_pj_ict05/board.bo">게시판</a></li>
 			<li><a href="#">Q&A</a></li>
 		</ul>
 

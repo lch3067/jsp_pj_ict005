@@ -23,13 +23,9 @@
 	crossorigin="anonymous"></script>
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
-<script type="text/javascript" src="/jsp_pj_ict05/resources/js/common/main.js" defer></script>
-<script type="text/javascript" src="/jsp_pj_ict05/resources/js/customer/join.js" defer></script>
+<script src="/jsp_pj_ict05/resources/js/customer/join.js" defer></script>
 </head>
 <body>
-	<%
-		System.out.println("<<< 회원가입 화면 >>>");
-	%>
 	<div class="wrap">
 		<!-- Header 시작 -->
 		<%@ include file="../../common/header.jsp"%>
@@ -40,10 +36,8 @@
 			<div id="contents">
 				<!-- 상단 중앙1 시작 -->
 				<div id="section1">
-					<h1 align="center">회원가입창</h2>
+					<h1 align="center">게시판 창</h2>
 				</div>
-				
-				
 				
 				<!-- 상단 중앙2 시작 -->
 				<div id=section2">
@@ -52,12 +46,9 @@
 						<div class="join">
 							<form name="inputform" action="joinAction.do" method="post"
 								onsubmit="return singleCheck()">
-								
-								<!-- 2-1. 중복확인 버튼 안 눌렀을때 0으로 설정 -->
-								<input type="hidden" name="hiddenUserid" value="0">
 								<table>
 									<tr>
-										<th><label for="user_id" />* 아이디</th>
+										<th><label for="user_id" />게시글 제목</th>
 										<td><input type="text" id="user_id" name="user_id"
 											class="input" size="20" placeholder="공백없이 20자 이내로 작성"
 											required autofocus> <input type=button name="dubChk"
@@ -65,30 +56,24 @@
 										</td>
 									</tr>
 									<tr>
-										<th><label for="user_password" />* 비밀번호</th>
-										<td><input type="password" id="user_password"
-											name="user_password" class="input" size="20"
-											placeholder="공백없이 20자 이내로 작성" required autofocus></td>
+										<th><label/>내용</th>
+										<td>
+											<textarea slot="20"> 
+											</textarea> 
+										</td>
 									</tr>
 									<tr>
-										<th><label for="re_password" />* 비밀번호(확인)</th>
-										<td><input type="password" id="re_password"
-											name="re_password" class="input" size="20"
-											placeholder="비밀번호 재입력" required autofocus></td>
-									</tr>
-									<tr>
-										<th><label for="user_name" />* 이름</th>
+										<th><label for="user_name" />작성자</th>
 										<td><input type="text" id="user_name" name="user_name"
 											class="input" size="20" placeholder="이름 작성"
 											required autofocus> 
 										</td>
 									</tr>
 									<tr>
-										<th><label/>* 생년월일</th>
-										<td><input type="date" name="user_birthday"
-											class="input" size="8" placeholder="-없이 생년월일 6자리 입력"
-											required autofocus> 
-										</td>
+										<th><label for="user_password" />게시글 내용</th>
+										<td><input type="password" id="user_password"
+											name="user_password" class="input" size="20"
+											placeholder="공백없이 20자 이내로 작성" required autofocus></td>
 									</tr>
 									<tr>
 										<th><label for="user_address" />* 주소</th>
@@ -112,8 +97,8 @@
 										<td>
 											<input type="text" id="user_email1" name="user_email1" class="input" size="20" style="width:100px" required>
 											@
-											<input type="text" id="user_email2" name="user_email2" class="input" size="20" style="width:100px" required>
-											<select class="input" name="user_email3" style="width:100px" onchange="selectEmailChk(this)">
+											<input type="text" name="user_email2" class="input" size="20" style="width:100px" required>
+											<select class="input" name="user_email3" style="width:100px" onchange="selectEmailChk()">
 												<option value="0">직접입력</option>
 												<option value="naver.com">네이버</option>
 												<option value="google.com">구글</option>
