@@ -143,14 +143,14 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		// 4-2단계. 회원정보 인증성공시
 		if(selectCnt == 1) {
-			request.setAttribute("selectCnt", selectCnt);
 			// 5-2단계. 탈퇴처리
 			deleteCnt = getInstance.deleteCustomer(sessionID);
 			if(deleteCnt == 1) {
 				request.getSession().invalidate();
-				request.setAttribute("deleteCnt", deleteCnt);
 			}
 		}
+		request.setAttribute("selectCnt", selectCnt);
+		request.setAttribute("deleteCnt", deleteCnt);
 		
 	}
 

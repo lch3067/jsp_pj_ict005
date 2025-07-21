@@ -246,13 +246,10 @@ public class CustomerDaoImpl implements CustomerDAO {
 			// 3. 준비(설정)
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, sessionID);
-			// 4. 실행
-			rs = pstmt.executeQuery();
+			
+			// 4. 실행 (성공이면 1, 실패면 0)
+			deleteCnt = pstmt.executeUpdate();
 
-			// 5. 존재하면 1, 아니면 0
-			if (rs.next()) {
-				deleteCnt = 1;
-			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
